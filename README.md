@@ -35,6 +35,8 @@ since the where clause is eval'd you can do more advanced stuff e.g. on sub-obje
 Note that due to the fact that sqllite columns are case insensitive **you have to put camelCase columns in quotation-marks**:  
 Checking if a column is null only works like this: where "column == null" = 'true'
 
+## Build and Setup
+
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.20-4.
 
 ## Development server
