@@ -1,5 +1,41 @@
 # SqlSelect
 
+For the idea behind this repository check my blog post [Using SQL to analyze data in JavaScript without a database](https://blog.coded-aesthetics.com/2016/11/22/using-sql-to-analyze-data-in-javascript-without-database/)
+
+The implementation is based on the [SQLLite parser](http://codeschool.github.io/sqlite-parser/demo/) written by [Nick Wronski](https://github.com/nwronski) for Codeschool which parses SQL statements and generates an abstract syntax tree out of which the neccessary data can be extracted.
+[You can find the repository here](https://github.com/coded-aesthetics/javascript-sql-data-analysis). 
+Please note that this is highly experimental and to be considered a case study.    
+If you would however like to use or build on this technique, feel free to do so.  
+
+[View Demo Here](https://s3.eu-central-1.amazonaws.com/coded-aesthetics/demos/javascript-sql-data-analysis/index.html)
+
+You can find [a nice collection of data to analyze](https://github.com/jdorfman/awesome-json-datasets) in this github repo by Justin Dorfman
+
+Currently supported statements:
+- select *  
+- select column  
+- select column1, column2  
+- select sum(column)  
+- select avg(column)  
+- select min(column)  
+- select max(column)  
+- select count(*)  
+- where column = 3
+- where column = 'str'
+- where column like 'A%' (begins with A)  
+- where column like '%D' (ends with D)  
+- where column like 'DA' (contains DA)  
+- order by column asc  
+- order by column desc  
+  
+since the where clause is eval'd you can do more advanced stuff e.g. on sub-objects in your dataset like:  
+- where "arrColumn[0].subObj" = 'something'
+- where "arrColumn.every((cur) => {return cur.val > 3;})" = 'true'
+
+### Caveats
+Note that due to the fact that sqllite columns are case insensitive **you have to put camelCase columns in quotation-marks**:  
+Checking if a column is null only works like this: where "column == null" = 'true'
+
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.20-4.
 
 ## Development server
