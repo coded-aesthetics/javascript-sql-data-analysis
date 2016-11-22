@@ -2,8 +2,7 @@
 
 For the idea behind this repository check my blog post [Using SQL to analyze data in JavaScript without a database](https://blog.coded-aesthetics.com/2016/11/22/using-sql-to-analyze-data-in-javascript-without-database/)
 
-The implementation is based on the [SQLLite parser](http://codeschool.github.io/sqlite-parser/demo/) written by [Nick Wronski](https://github.com/nwronski) for Codeschool which parses SQL statements and generates an abstract syntax tree out of which the neccessary data can be extracted.
-[You can find the repository here](https://github.com/coded-aesthetics/javascript-sql-data-analysis). 
+The implementation is based on the [SQLLite parser](http://codeschool.github.io/sqlite-parser/demo/) written by [Nick Wronski](https://github.com/nwronski) for Codeschool which parses SQL statements and generates an abstract syntax tree out of which the neccessary data can be extracted. 
 Please note that this is highly experimental and to be considered a case study.    
 If you would however like to use or build on this technique, feel free to do so.  
 
