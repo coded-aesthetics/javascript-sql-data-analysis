@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('../node_modules/ng2-toasty/style-default.css');
+
+body textarea, input {
+  font-size:17px;
+  padding:5px;
+  font-family: monospace;
+}
+
+.tasty-toasty > #toasty.toasty-position-top-right {
+  margin-top: 31px;
+}
+
+textarea {
+  resize: none;
+}

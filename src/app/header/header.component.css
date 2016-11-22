@@ -1,0 +1,32 @@
+#header-component {
+  height:30px;
+  min-width: calc(100vw - 18px);
+  background-color: #03192B;
+  margin-bottom: 3px;
+  color:white;
+}
+
+#header-left {
+  width: calc(100% - 305px);
+  float:left;
+  text-align:left;
+  font-family: sans-serif;
+  font-weight: bold;
+  padding:5px;
+  padding-top:7px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow:hidden;
+}
+
+#header-right {
+  width: 295px;
+  float:left;
+  text-align:right;
+}
+
+@media (max-width: 700px) {
+  #header-component {
+    min-width: calc(100vw - 34px);
+  }
+}
