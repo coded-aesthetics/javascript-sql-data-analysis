@@ -1,4 +1,4 @@
-# SqlSelect
+# Analyzing JavaScript datasets with SQL queries
 
 For the idea behind this repository check my blog post [Using SQL to analyze data in JavaScript without a database](https://blog.coded-aesthetics.com/2016/11/22/using-sql-to-analyze-data-in-javascript-without-database/)
 
