@@ -70,10 +70,18 @@ export class SqlService {
       //console.log(`cur['${left}'] ${operation} ${right}`);
       if (operation !== "like") {
         out = out.filter((cur) => {
-          if (typeof cur[left] === "string") {
-            return eval(`cur['${left}'] ${operation} "${right}"`);
+          try {
+            let isNull = eval(`cur.${left} == null`);
+            if (isNull) {
+              return false;
+            }
+          } catch (e) {
+            return false;
           }
-          return eval(`cur['${left}'] ${operation} ${right}`);
+          if (eval(`typeof cur.${left} === "string"`)) {
+            return eval(`cur.${left} ${operation} "${right}"`);
+          }
+          return eval(`cur.${left} ${operation} ${right}`);
         });
       } else {
         right = "" + right;
@@ -81,8 +89,15 @@ export class SqlService {
         let begin = right.startsWith("%");
         let end = right.endsWith("%");
         out = out.filter((cur) => {
-          if (!cur[left]) return false;
-          let field = cur[left] + "";
+          try {
+            let isNull = eval(`cur.${left} == null`);
+            if (isNull) {
+              return false;
+            }
+          } catch (e) {
+            return false;
+          }
+          let field = eval(`cur.${left} + ""`);
           if (begin) {
             return field.endsWith(search);
           }
@@ -92,7 +107,7 @@ export class SqlService {
           return field.includes(search);
         });
       }
-      console.log("Filter Phase: ", JSON.stringify(out));
+      //console.log("Filter Phase: ", JSON.stringify(out));
     }
     /***** **** *** **      *        *            *                      *
      *   ORDER BY <--> Sort Phase
@@ -122,7 +137,7 @@ export class SqlService {
             }
           }
         });
-        console.log("Sort Phase: ", JSON.stringify(out));
+        //console.log("Sort Phase: ", JSON.stringify(out));
       }
     }
     /***** **** *** **      *        *            *                      *
@@ -134,19 +149,19 @@ export class SqlService {
       } else {
         out = out.map((cur) => {
           if (selectField) {
-            console.log(cur, selectField);
+            //console.log(cur, selectField);
             return {[selectField]: cur[selectField]};
           }
           if (selectFields) {
             return selectFields.reduce((red, one) => {
               red[one] = cur[one];
-              console.log(cur);
+              //console.log(cur);
               return red;
             }, {});
           }
         });
       }
-      console.log("Map Phase: ", JSON.stringify(out));
+      //console.log("Map Phase: ", JSON.stringify(out));
     }
 
     /***** **** *** **      *        *            *                      *
@@ -185,7 +200,7 @@ export class SqlService {
     if (selectType === "function" && funcs[functionName]) {
       let func = funcs[functionName];
       let out2 = func(out);
-      console.log("Reduce Phase: ", JSON.stringify(out2));
+      //console.log("Reduce Phase: ", JSON.stringify(out2));
       return out2;
     }
     if (selectType === "function" && !funcs[functionName]) {
