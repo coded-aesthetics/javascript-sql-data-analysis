@@ -25,7 +25,7 @@ export class QueryComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.queryStr = "select avg(gdp) from countries where population < 1000000";
+    this.queryStr = `select first_name, last_name from people where "friends.every((fr) => {return fr.funny && fr.spontaneous})" == 'true'`;
     this.onQueryChange(this.queryStr);
   }
 
